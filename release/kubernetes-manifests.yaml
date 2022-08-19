@@ -34,10 +34,10 @@ spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 1000
-        runAsGroup: 1000
+        fsGroup: 1001510000
+        runAsGroup: 1001510000
         runAsNonRoot: true
-        runAsUser: 1000
+        runAsUser: 1001510001
       containers:
       - name: server
         securityContext:
@@ -101,10 +101,10 @@ spec:
     spec:
       serviceAccountName: default
       securityContext:
-        fsGroup: 1000
-        runAsGroup: 1000
+        fsGroup: 1001510000
+        runAsGroup: 1001510000
         runAsNonRoot: true
-        runAsUser: 1000
+        runAsUser: 1001510001
       containers:
         - name: server
           securityContext:
@@ -183,10 +183,10 @@ spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 1000
-        runAsGroup: 1000
+        fsGroup: 1001510000
+        runAsGroup: 1001510000
         runAsNonRoot: true
-        runAsUser: 1000
+        runAsUser: 1001510001
       containers:
       - name: server
         securityContext:
@@ -256,10 +256,10 @@ spec:
     spec:
       serviceAccountName: default
       securityContext:
-        fsGroup: 1000
-        runAsGroup: 1000
+        fsGroup: 1001510000
+        runAsGroup: 1001510000
         runAsNonRoot: true
-        runAsUser: 1000
+        runAsUser: 1001510001
       containers:
         - name: server
           securityContext:
@@ -367,10 +367,10 @@ spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 1000
-        runAsGroup: 1000
+        fsGroup: 1001510000
+        runAsGroup: 1001510000
         runAsNonRoot: true
-        runAsUser: 1000
+        runAsUser: 1001510001
       containers:
       - name: server
         securityContext:
@@ -435,10 +435,10 @@ spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 1000
-        runAsGroup: 1000
+        fsGroup: 1001510000
+        runAsGroup: 1001510000
         runAsNonRoot: true
-        runAsUser: 1000
+        runAsUser: 1001510001
       containers:
       - name: server
         securityContext:
@@ -505,10 +505,10 @@ spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 1000
-        runAsGroup: 1000
+        fsGroup: 1001510000
+        runAsGroup: 1001510000
         runAsNonRoot: true
-        runAsUser: 1000
+        runAsUser: 1001510001
       containers:
       - name: server
         securityContext:
@@ -574,10 +574,10 @@ spec:
       terminationGracePeriodSeconds: 5
       restartPolicy: Always
       securityContext:
-        fsGroup: 1000
-        runAsGroup: 1000
+        fsGroup: 1001510000
+        runAsGroup: 1001510000
         runAsNonRoot: true
-        runAsUser: 1000
+        runAsUser: 1001510001
       initContainers:
       - command:
         - /bin/sh
@@ -633,10 +633,10 @@ spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 1000
-        runAsGroup: 1000
+        fsGroup: 1001510000
+        runAsGroup: 1001510000
         runAsNonRoot: true
-        runAsUser: 1000
+        runAsUser: 1001510001
       containers:
       - name: server
         securityContext:
@@ -701,10 +701,10 @@ spec:
     spec:
       serviceAccountName: default
       securityContext:
-        fsGroup: 1000
-        runAsGroup: 1000
+        fsGroup: 1001510000
+        runAsGroup: 1001510000
         runAsNonRoot: true
-        runAsUser: 1000
+        runAsUser: 1001510001
       containers:
       - name: server
         securityContext:
@@ -770,10 +770,10 @@ spec:
         app: redis-cart
     spec:
       securityContext:
-        fsGroup: 1000
-        runAsGroup: 1000
+        fsGroup: 1001510000
+        runAsGroup: 1001510000
         runAsNonRoot: true
-        runAsUser: 1000
+        runAsUser: 1001510001
       containers:
       - name: redis
         securityContext:
@@ -837,10 +837,10 @@ spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 1000
-        runAsGroup: 1000
+        fsGroup: 1001510000
+        runAsGroup: 1001510000
         runAsNonRoot: true
-        runAsUser: 1000
+        runAsUser: 1001510001
       containers:
       - name: server
         securityContext:
