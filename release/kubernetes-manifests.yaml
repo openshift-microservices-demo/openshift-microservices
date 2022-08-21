@@ -22,10 +22,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: emailservice
+  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: emailservice
+      function: backends
   template:
     metadata:
       labels:
@@ -77,10 +79,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: emailservice
+  namespace: boutique-ops
 spec:
   type: ClusterIP
   selector:
     app: emailservice
+    function: backends
   ports:
   - name: grpc
     port: 5000
@@ -90,10 +94,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: checkoutservice
+  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: checkoutservice
+      function: backends
   template:
     metadata:
       labels:
@@ -158,10 +164,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: checkoutservice
+  namespace: boutique-ops
 spec:
   type: ClusterIP
   selector:
     app: checkoutservice
+    function: backends
   ports:
   - name: grpc
     port: 5050
@@ -171,10 +179,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: recommendationservice
+  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: recommendationservice
+      function: backends
   template:
     metadata:
       labels:
@@ -230,10 +240,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: recommendationservice
+  namespace: boutique-ops
 spec:
   type: ClusterIP
   selector:
     app: recommendationservice
+    function: backends
   ports:
   - name: grpc
     port: 8080
@@ -243,10 +255,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: frontend
+      function: backends
   template:
     metadata:
       labels:
@@ -329,10 +343,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend
+  namespace: boutique-ops
 spec:
   type: ClusterIP
   selector:
     app: frontend
+    function: backends
   ports:
   - name: http
     port: 80
@@ -342,10 +358,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend-external
+  namespace: boutique-ops
 spec:
   type: LoadBalancer
   selector:
     app: frontend
+    function: backends
   ports:
   - name: http
     port: 80
@@ -355,10 +373,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: paymentservice
+  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: paymentservice
+      function: backends
   template:
     metadata:
       labels:
@@ -410,10 +430,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: paymentservice
+  namespace: boutique-ops
 spec:
   type: ClusterIP
   selector:
     app: paymentservice
+    function: backends
   ports:
   - name: grpc
     port: 50051
@@ -423,10 +445,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: productcatalogservice
+  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: productcatalogservice
+      function: backends
   template:
     metadata:
       labels:
@@ -480,10 +504,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: productcatalogservice
+  namespace: boutique-ops
 spec:
   type: ClusterIP
   selector:
     app: productcatalogservice
+    function: backends
   ports:
   - name: grpc
     port: 3550
@@ -493,10 +519,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cartservice
+  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: cartservice
+      function: backends
   template:
     metadata:
       labels:
@@ -545,10 +573,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: cartservice
+  namespace: boutique-ops
 spec:
   type: ClusterIP
   selector:
     app: cartservice
+    function: backends
   ports:
   - name: grpc
     port: 7070
@@ -558,10 +588,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: loadgenerator
+  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: loadgenerator
+      function: backends
   replicas: 1
   template:
     metadata:
@@ -621,10 +653,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: currencyservice
+  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: currencyservice
+      function: backends
   template:
     metadata:
       labels:
@@ -677,10 +711,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: currencyservice
+  namespace: boutique-ops
 spec:
   type: ClusterIP
   selector:
     app: currencyservice
+    function: backends
   ports:
   - name: grpc
     port: 7000
@@ -690,10 +726,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: shippingservice
+  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: shippingservice
+      function: backends
   template:
     metadata:
       labels:
@@ -747,10 +785,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: shippingservice
+  namespace: boutique-ops
 spec:
   type: ClusterIP
   selector:
     app: shippingservice
+    function: backends
   ports:
   - name: grpc
     port: 50051
@@ -760,6 +800,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis-cart
+  namespace: client1
 spec:
   selector:
     matchLabels:
@@ -768,6 +809,7 @@ spec:
     metadata:
       labels:
         app: redis-cart
+        function: tenant
     spec:
       securityContext:
         fsGroup: 1001510000
@@ -812,10 +854,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis-cart
+  namespace: client1
 spec:
   type: ClusterIP
   selector:
     app: redis-cart
+    function: tenant
   ports:
   - name: tls-redis
     port: 6379
@@ -825,10 +869,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: adservice
+  namespace: client1
 spec:
   selector:
     matchLabels:
       app: adservice
+      function: tenant
   template:
     metadata:
       labels:
@@ -884,10 +930,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: adservice
+  namespace: client1
 spec:
   type: ClusterIP
   selector:
     app: adservice
+    function: tenant
   ports:
   - name: grpc
     port: 9555
