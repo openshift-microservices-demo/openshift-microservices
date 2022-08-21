@@ -32,14 +32,15 @@ spec:
     metadata:
       labels:
         app: emailservice
+        function: backends
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 1001510000
-        runAsGroup: 1001510000
+        fsGroup: 10000
+        runAsGroup: 10000
         runAsNonRoot: true
-        runAsUser: 1001510001
+        runAsUser: 10000
       containers:
       - name: server
         securityContext:
@@ -104,13 +105,14 @@ spec:
     metadata:
       labels:
         app: checkoutservice
+        function: backends
     spec:
       serviceAccountName: default
       securityContext:
-        fsGroup: 1001510000
-        runAsGroup: 1001510000
+        fsGroup: 10000
+        runAsGroup: 10000
         runAsNonRoot: true
-        runAsUser: 1001510001
+        runAsUser: 10000
       containers:
         - name: server
           securityContext:
@@ -189,14 +191,15 @@ spec:
     metadata:
       labels:
         app: recommendationservice
+        function: backends
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 1001510000
-        runAsGroup: 1001510000
+        fsGroup: 10000
+        runAsGroup: 10000
         runAsNonRoot: true
-        runAsUser: 1001510001
+        runAsUser: 10000
       containers:
       - name: server
         securityContext:
@@ -265,15 +268,16 @@ spec:
     metadata:
       labels:
         app: frontend
+        function: backends
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
       serviceAccountName: default
       securityContext:
-        fsGroup: 1001510000
-        runAsGroup: 1001510000
+        fsGroup: 10000
+        runAsGroup: 10000
         runAsNonRoot: true
-        runAsUser: 1001510001
+        runAsUser: 10000
       containers:
         - name: server
           securityContext:
@@ -383,14 +387,15 @@ spec:
     metadata:
       labels:
         app: paymentservice
+        function: backends
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 1001510000
-        runAsGroup: 1001510000
+        fsGroup: 10000
+        runAsGroup: 10000
         runAsNonRoot: true
-        runAsUser: 1001510001
+        runAsUser: 10000
       containers:
       - name: server
         securityContext:
@@ -455,14 +460,15 @@ spec:
     metadata:
       labels:
         app: productcatalogservice
+        function: backends
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 1001510000
-        runAsGroup: 1001510000
+        fsGroup: 10000
+        runAsGroup: 10000
         runAsNonRoot: true
-        runAsUser: 1001510001
+        runAsUser: 10000
       containers:
       - name: server
         securityContext:
@@ -529,14 +535,15 @@ spec:
     metadata:
       labels:
         app: cartservice
+        function: backends
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 1001510000
-        runAsGroup: 1001510000
+        fsGroup: 10000
+        runAsGroup: 10000
         runAsNonRoot: true
-        runAsUser: 1001510001
+        runAsUser: 10000
       containers:
       - name: server
         securityContext:
@@ -599,6 +606,7 @@ spec:
     metadata:
       labels:
         app: loadgenerator
+        function: backends
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
@@ -606,10 +614,10 @@ spec:
       terminationGracePeriodSeconds: 5
       restartPolicy: Always
       securityContext:
-        fsGroup: 1001510000
-        runAsGroup: 1001510000
+        fsGroup: 10000
+        runAsGroup: 10000
         runAsNonRoot: true
-        runAsUser: 1001510001
+        runAsUser: 10000
       initContainers:
       - command:
         - /bin/sh
@@ -663,14 +671,15 @@ spec:
     metadata:
       labels:
         app: currencyservice
+        function: backends
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 1001510000
-        runAsGroup: 1001510000
+        fsGroup: 10000
+        runAsGroup: 10000
         runAsNonRoot: true
-        runAsUser: 1001510001
+        runAsUser: 10000
       containers:
       - name: server
         securityContext:
@@ -736,13 +745,14 @@ spec:
     metadata:
       labels:
         app: shippingservice
+        function: backends
     spec:
       serviceAccountName: default
       securityContext:
-        fsGroup: 1001510000
-        runAsGroup: 1001510000
+        fsGroup: 10000
+        runAsGroup: 10000
         runAsNonRoot: true
-        runAsUser: 1001510001
+        runAsUser: 10000
       containers:
       - name: server
         securityContext:
@@ -812,10 +822,10 @@ spec:
         function: tenant
     spec:
       securityContext:
-        fsGroup: 1001510000
-        runAsGroup: 1001510000
+        fsGroup: 10000
+        runAsGroup: 10000
         runAsNonRoot: true
-        runAsUser: 1001510001
+        runAsUser: 10000
       containers:
       - name: redis
         securityContext:
@@ -879,14 +889,15 @@ spec:
     metadata:
       labels:
         app: adservice
+        function: tenant
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 1001510000
-        runAsGroup: 1001510000
+        fsGroup: 10000
+        runAsGroup: 10000
         runAsNonRoot: true
-        runAsUser: 1001510001
+        runAsUser: 10000
       containers:
       - name: server
         securityContext:
