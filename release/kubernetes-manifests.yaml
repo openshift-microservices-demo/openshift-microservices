@@ -22,7 +22,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: emailservice
-  namespace: boutique-ops
+  namespace: enterprise-utilities
 spec:
   selector:
     matchLabels:
@@ -80,7 +80,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: emailservice
-  namespace: boutique-ops
+  namespace: enterprise-utilities
 spec:
   type: ClusterIP
   selector:
@@ -377,7 +377,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: paymentservice
-  namespace: boutique-ops
+  namespace: enterprise-utilities
 spec:
   selector:
     matchLabels:
@@ -435,7 +435,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: paymentservice
-  namespace: boutique-ops
+  namespace: enterprise-utilities
 spec:
   type: ClusterIP
   selector:
@@ -661,7 +661,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: currencyservice
-  namespace: boutique-ops
+  namespace: enterprise-utilities
 spec:
   selector:
     matchLabels:
@@ -720,7 +720,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: currencyservice
-  namespace: boutique-ops
+  namespace: enterprise-utilities
 spec:
   type: ClusterIP
   selector:
