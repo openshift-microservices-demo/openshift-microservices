@@ -139,7 +139,7 @@ spec:
           - name: SHIPPING_SERVICE_ADDR
             value: "shippingservice.boutique-ops.svc:50051"
           - name: PAYMENT_SERVICE_ADDR
-            value: "paymentservice.boutique-ops.svc:50051"
+            value: "paymentservice.enterprise-utilities.svc:50051"
           - name: EMAIL_SERVICE_ADDR
             value: "emailservice.enterprise-utilities.svc:5000"
           - name: CURRENCY_SERVICE_ADDR
