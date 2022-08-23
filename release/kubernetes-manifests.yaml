@@ -145,7 +145,7 @@ spec:
           - name: CURRENCY_SERVICE_ADDR
             value: "currencyservice.enterprise-utilities.svc:7000"
           - name: CART_SERVICE_ADDR
-            value: "cartservice.client1.svc:7070"
+            value: "cartservice.boutique-ops.svc:7070"
           - name: DISABLE_STATS
             value: "1"
           - name: DISABLE_TRACING
@@ -314,7 +314,7 @@ spec:
           - name: CURRENCY_SERVICE_ADDR
             value: "currencyservice.enterprise-utilities.svc:7000"
           - name: CART_SERVICE_ADDR
-            value: "cartservice.client1.svc:7070"
+            value: "cartservice.boutique-ops.svc:7070"
           - name: RECOMMENDATION_SERVICE_ADDR
             value: "recommendationservice.boutique-ops.svc:8080"
           - name: SHIPPING_SERVICE_ADDR
