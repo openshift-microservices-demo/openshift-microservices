@@ -22,25 +22,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: emailservice
-  namespace: enterprise-utilities
 spec:
   selector:
     matchLabels:
       app: emailservice
-      function: backends
   template:
     metadata:
       labels:
         app: emailservice
-        function: backends
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 10000
-        runAsGroup: 10000
+        fsGroup: 1000
+        runAsGroup: 1000
         runAsNonRoot: true
-        runAsUser: 10000
+        runAsUser: 1000
       containers:
       - name: server
         securityContext:
@@ -80,12 +77,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: emailservice
-  namespace: enterprise-utilities
 spec:
   type: ClusterIP
   selector:
     app: emailservice
-    function: backends
   ports:
   - name: grpc
     port: 5000
@@ -95,24 +90,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: checkoutservice
-  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: checkoutservice
-      function: backends
   template:
     metadata:
       labels:
         app: checkoutservice
-        function: backends
     spec:
       serviceAccountName: default
       securityContext:
-        fsGroup: 10000
-        runAsGroup: 10000
+        fsGroup: 1000
+        runAsGroup: 1000
         runAsNonRoot: true
-        runAsUser: 10000
+        runAsUser: 1000
       containers:
         - name: server
           securityContext:
@@ -135,17 +127,17 @@ spec:
           - name: PORT
             value: "5050"
           - name: PRODUCT_CATALOG_SERVICE_ADDR
-            value: "productcatalogservice.boutique-ops.svc:3550"
+            value: "productcatalogservice:3550"
           - name: SHIPPING_SERVICE_ADDR
-            value: "shippingservice.boutique-ops.svc:50051"
+            value: "shippingservice:50051"
           - name: PAYMENT_SERVICE_ADDR
-            value: "paymentservice.enterprise-utilities.svc:50051"
+            value: "paymentservice:50051"
           - name: EMAIL_SERVICE_ADDR
-            value: "emailservice.enterprise-utilities.svc:5000"
+            value: "emailservice:5000"
           - name: CURRENCY_SERVICE_ADDR
-            value: "currencyservice.enterprise-utilities.svc:7000"
+            value: "currencyservice:7000"
           - name: CART_SERVICE_ADDR
-            value: "cartservice.boutique-ops.svc:7070"
+            value: "cartservice:7070"
           - name: DISABLE_STATS
             value: "1"
           - name: DISABLE_TRACING
@@ -166,12 +158,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: checkoutservice
-  namespace: boutique-ops
 spec:
   type: ClusterIP
   selector:
     app: checkoutservice
-    function: backends
   ports:
   - name: grpc
     port: 5050
@@ -181,25 +171,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: recommendationservice
-  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: recommendationservice
-      function: backends
   template:
     metadata:
       labels:
         app: recommendationservice
-        function: backends
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 10000
-        runAsGroup: 10000
+        fsGroup: 1000
+        runAsGroup: 1000
         runAsNonRoot: true
-        runAsUser: 10000
+        runAsUser: 1000
       containers:
       - name: server
         securityContext:
@@ -224,7 +211,7 @@ spec:
         - name: PORT
           value: "8080"
         - name: PRODUCT_CATALOG_SERVICE_ADDR
-          value: "productcatalogservice.boutique-ops.svc:3550"
+          value: "productcatalogservice:3550"
         - name: DISABLE_TRACING
           value: "1"
         - name: DISABLE_PROFILER
@@ -243,12 +230,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: recommendationservice
-  namespace: boutique-ops
 spec:
   type: ClusterIP
   selector:
     app: recommendationservice
-    function: backends
   ports:
   - name: grpc
     port: 8080
@@ -258,26 +243,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  namespace: client1
 spec:
   selector:
     matchLabels:
       app: frontend
-      function: backends
   template:
     metadata:
       labels:
         app: frontend
-        function: backends
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
       serviceAccountName: default
       securityContext:
-        fsGroup: 10000
-        runAsGroup: 10000
+        fsGroup: 1000
+        runAsGroup: 1000
         runAsNonRoot: true
-        runAsUser: 10000
+        runAsUser: 1000
       containers:
         - name: server
           securityContext:
@@ -310,19 +292,19 @@ spec:
           - name: PORT
             value: "8080"
           - name: PRODUCT_CATALOG_SERVICE_ADDR
-            value: "productcatalogservice.boutique-ops.svc:3550"
+            value: "productcatalogservice:3550"
           - name: CURRENCY_SERVICE_ADDR
-            value: "currencyservice.enterprise-utilities.svc:7000"
+            value: "currencyservice:7000"
           - name: CART_SERVICE_ADDR
-            value: "cartservice.boutique-ops.svc:7070"
+            value: "cartservice:7070"
           - name: RECOMMENDATION_SERVICE_ADDR
-            value: "recommendationservice.boutique-ops.svc:8080"
+            value: "recommendationservice:8080"
           - name: SHIPPING_SERVICE_ADDR
-            value: "shippingservice.boutique-ops.svc:50051"
+            value: "shippingservice:50051"
           - name: CHECKOUT_SERVICE_ADDR
-            value: "checkoutservice.boutique-ops.svc:5050"
+            value: "checkoutservice:5050"
           - name: AD_SERVICE_ADDR
-            value: "adservice.client1.svc:9555"
+            value: "adservice:9555"
           # # ENV_PLATFORM: One of: local, gcp, aws, azure, onprem, alibaba
           # # When not set, defaults to "local" unless running in GKE, otherwies auto-sets to gcp 
           # - name: ENV_PLATFORM 
@@ -347,12 +329,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend
-  namespace: client1
 spec:
   type: ClusterIP
   selector:
     app: frontend
-    function: backends
   ports:
   - name: http
     port: 80
@@ -362,12 +342,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend-external
-  namespace: boutique-ops
 spec:
   type: LoadBalancer
   selector:
     app: frontend
-    function: backends
   ports:
   - name: http
     port: 80
@@ -377,25 +355,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: paymentservice
-  namespace: enterprise-utilities
 spec:
   selector:
     matchLabels:
       app: paymentservice
-      function: backends
   template:
     metadata:
       labels:
         app: paymentservice
-        function: backends
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 10000
-        runAsGroup: 10000
+        fsGroup: 1000
+        runAsGroup: 1000
         runAsNonRoot: true
-        runAsUser: 10000
+        runAsUser: 1000
       containers:
       - name: server
         securityContext:
@@ -435,12 +410,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: paymentservice
-  namespace: enterprise-utilities
 spec:
   type: ClusterIP
   selector:
     app: paymentservice
-    function: backends
   ports:
   - name: grpc
     port: 50051
@@ -450,25 +423,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: productcatalogservice
-  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: productcatalogservice
-      function: backends
   template:
     metadata:
       labels:
         app: productcatalogservice
-        function: backends
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 10000
-        runAsGroup: 10000
+        fsGroup: 1000
+        runAsGroup: 1000
         runAsNonRoot: true
-        runAsUser: 10000
+        runAsUser: 1000
       containers:
       - name: server
         securityContext:
@@ -510,12 +480,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: productcatalogservice
-  namespace: boutique-ops
 spec:
   type: ClusterIP
   selector:
     app: productcatalogservice
-    function: backends
   ports:
   - name: grpc
     port: 3550
@@ -525,25 +493,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cartservice
-  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: cartservice
-      function: backends
   template:
     metadata:
       labels:
         app: cartservice
-        function: backends
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 10000
-        runAsGroup: 10000
+        fsGroup: 1000
+        runAsGroup: 1000
         runAsNonRoot: true
-        runAsUser: 10000
+        runAsUser: 1000
       containers:
       - name: server
         securityContext:
@@ -558,7 +523,7 @@ spec:
         - containerPort: 7070
         env:
         - name: REDIS_ADDR
-          value: "redis-cart.client1.svc:6379"
+          value: "redis-cart:6379"
         resources:
           requests:
             cpu: 200m
@@ -580,12 +545,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: cartservice
-  namespace: boutique-ops
 spec:
   type: ClusterIP
   selector:
     app: cartservice
-    function: backends
   ports:
   - name: grpc
     port: 7070
@@ -595,18 +558,15 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: loadgenerator
-  namespace: dev-ops
 spec:
   selector:
     matchLabels:
       app: loadgenerator
-      function: backends
   replicas: 1
   template:
     metadata:
       labels:
         app: loadgenerator
-        function: backends
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
@@ -614,10 +574,10 @@ spec:
       terminationGracePeriodSeconds: 5
       restartPolicy: Always
       securityContext:
-        fsGroup: 10000
-        runAsGroup: 10000
+        fsGroup: 1000
+        runAsGroup: 1000
         runAsNonRoot: true
-        runAsUser: 10000
+        runAsUser: 1000
       initContainers:
       - command:
         - /bin/sh
@@ -661,25 +621,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: currencyservice
-  namespace: enterprise-utilities
 spec:
   selector:
     matchLabels:
       app: currencyservice
-      function: backends
   template:
     metadata:
       labels:
         app: currencyservice
-        function: backends
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 10000
-        runAsGroup: 10000
+        fsGroup: 1000
+        runAsGroup: 1000
         runAsNonRoot: true
-        runAsUser: 10000
+        runAsUser: 1000
       containers:
       - name: server
         securityContext:
@@ -720,12 +677,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: currencyservice
-  namespace: enterprise-utilities
 spec:
   type: ClusterIP
   selector:
     app: currencyservice
-    function: backends
   ports:
   - name: grpc
     port: 7000
@@ -735,24 +690,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: shippingservice
-  namespace: boutique-ops
 spec:
   selector:
     matchLabels:
       app: shippingservice
-      function: backends
   template:
     metadata:
       labels:
         app: shippingservice
-        function: backends
     spec:
       serviceAccountName: default
       securityContext:
-        fsGroup: 10000
-        runAsGroup: 10000
+        fsGroup: 1000
+        runAsGroup: 1000
         runAsNonRoot: true
-        runAsUser: 10000
+        runAsUser: 1000
       containers:
       - name: server
         securityContext:
@@ -795,12 +747,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: shippingservice
-  namespace: boutique-ops
 spec:
   type: ClusterIP
   selector:
     app: shippingservice
-    function: backends
   ports:
   - name: grpc
     port: 50051
@@ -810,7 +760,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis-cart
-  namespace: client1
 spec:
   selector:
     matchLabels:
@@ -819,13 +768,12 @@ spec:
     metadata:
       labels:
         app: redis-cart
-        function: tenant
     spec:
       securityContext:
-        fsGroup: 10000
-        runAsGroup: 10000
+        fsGroup: 1000
+        runAsGroup: 1000
         runAsNonRoot: true
-        runAsUser: 10000
+        runAsUser: 1000
       containers:
       - name: redis
         securityContext:
@@ -864,12 +812,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis-cart
-  namespace: client1
 spec:
   type: ClusterIP
   selector:
     app: redis-cart
-    function: tenant
   ports:
   - name: tls-redis
     port: 6379
@@ -879,25 +825,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: adservice
-  namespace: client1
 spec:
   selector:
     matchLabels:
       app: adservice
-      function: tenant
   template:
     metadata:
       labels:
         app: adservice
-        function: tenant
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       securityContext:
-        fsGroup: 10000
-        runAsGroup: 10000
+        fsGroup: 1000
+        runAsGroup: 1000
         runAsNonRoot: true
-        runAsUser: 10000
+        runAsUser: 1000
       containers:
       - name: server
         securityContext:
@@ -941,15 +884,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: adservice
-  namespace: client1
 spec:
   type: ClusterIP
   selector:
     app: adservice
-    function: tenant
   ports:
   - name: grpc
     port: 9555
     targetPort: 9555
 # [END gke_release_kubernetes_manifests_microservices_demo]
-
