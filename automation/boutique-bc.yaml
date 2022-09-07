@@ -1,0 +1,9 @@
+apiVersion: "apps/v1"
+kind: "BuildConfig"
+metadata:
+  name: "boutique-shop-pipeline"
+  namespace: "boutique"
+spec:
+  strategy:
+    jenkinsfile:
+  type: JenkinsPipeline
