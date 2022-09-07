@@ -1,8 +1,7 @@
-apiVersion: "apps/v1"
-kind: "BuildConfig"
+apiVersion: "config.openshift.io/v1"
+kind: "Build"
 metadata:
   name: "boutique-shop-pipeline"
-  namespace: "boutique"
 spec:
   strategy:
     jenkinsfile:
