@@ -25,3 +25,9 @@ oc project ${NAMESPACE}
 #
 # Deploy the all-in-one application stack
 oc apply -f all-in-one.yaml
+#
+# Expose the frontend service
+oc expose service frontend
+#
+# Get the url for the website
+echo "The url for the shop is http://{oc get route | cut -d" " -f4}
