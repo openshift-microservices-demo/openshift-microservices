@@ -6,6 +6,7 @@ spec:
   strategy:
     jenkinsPipelineStrategy:
       jenkinsfile: 
+        pipeline {
         def templatePath = 'https://raw.githubusercontent.com/openshift-microservices-demo/openshift-microservices/main/release/kubernetes-manifests.yaml'
         def templateName = 'boutique-allinone-pipeline'
           agent {
