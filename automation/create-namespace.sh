@@ -31,4 +31,4 @@ oc expose service frontend
 #
 # Get the url for the website
 ROUTE=`oc get route | cut -d" " -f4`
-echo "The url for the shop is http://{$ROUTE}"
+echo "The shop url is "http://${ROUTE}""
