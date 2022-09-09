@@ -17,6 +17,8 @@ metadata:
 
 # Finish Namespace execution
 fi
-
 # Change into the new Namespace
 oc project ${NAMESPACE}
+#
+# Deploy the all-in-one application stack
+oc apply -f all-in-one.yaml
