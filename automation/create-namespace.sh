@@ -30,4 +30,5 @@ oc apply -f all-in-one.yaml
 oc expose service frontend
 #
 # Get the url for the website
-echo "The url for the shop is http://{oc get route | cut -d" " -f4}
+ROUTE=`oc get route | cut -d" " -f4`
+echo "The url for the shop is http://{$ROUTE}"
