@@ -23,6 +23,7 @@ oc project ${NAMESPACE}
 #
 # Deploy the all-in-one application stack
 oc apply -f all-in-one.yaml
+wait 30s
 #
 # Expose the frontend service
 oc expose service frontend
