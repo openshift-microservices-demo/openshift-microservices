@@ -22,12 +22,14 @@ oc adm policy add-scc-to-user privileged -z default -n $1
 oc project ${NAMESPACE}
 #
 # Deploy the all-in-one application stack
-oc apply -f all-in-one.yaml
-wait 30s
+oc apply -f ${PWD}all-in-one.yaml
+#
+# **Need to create logic to monitor the website until the service is up and running**
 #
 # Expose the frontend service
 oc expose service frontend
 #
 # Get the url for the website
 ROUTE=`oc get route | cut -d" " -f4`
-echo "The shop url is "http://${ROUTE}""
+for i in `curl -kvv $ROUTE`; do grep "HTTP\/1.1 200" 
+#echo "The shop url is "http://${ROUTE}""
