@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Define Namespace variable
+# Remove the export variable if it already exists, set the new variable, then export it.
 unset NAMESPACE
 NAMESPACE=$1
 export NAMESPACE
