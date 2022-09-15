@@ -33,3 +33,9 @@ oc expose service frontend
 ROUTE=`oc get route | cut -d" " -f4`
 for i in `curl -kvv $ROUTE`; do grep "HTTP\/1.1 200" 
 #echo "The shop url is "http://${ROUTE}""
+#
+# Apply a quota to the namespace
+oc apply -f ${PWD}boutique-quota.yaml
+# 
+# Apply autoscaling for the frontend service
+oc apply -f frontend-hpa.yaml

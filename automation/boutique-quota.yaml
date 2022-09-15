@@ -2,7 +2,7 @@ kind: ResourceQuota
 apiVersion: v1
 metadata:
   name: boutique-quota
-  namespace: boutique
+  namespace: {{ $1 }}
 spec:
   hard:
     limits.cpu: '4'
