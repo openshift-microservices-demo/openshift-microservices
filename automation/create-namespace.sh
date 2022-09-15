@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Define Namespace variable
+unset NAMESPACE
 NAMESPACE=$1
+export NAMESPACE
 #
 # Check if the namespace already exists
 if oc get namespace -o json | jq -r ".items[].metadata.name" | grep $NAMESPACE; then \
@@ -22,7 +24,7 @@ oc adm policy add-scc-to-user privileged -z default -n $1
 oc project ${NAMESPACE}
 #
 # Deploy the all-in-one application stack
-oc apply -f ${PWD}all-in-one.yaml
+oc apply -f ${PWD}/all-in-one.yaml
 #
 # **Need to create logic to monitor the website until the service is up and running**
 #
@@ -31,11 +33,13 @@ oc expose service frontend
 #
 # Get the url for the website
 ROUTE=`oc get route | cut -d" " -f4`
-for i in `curl -kvv $ROUTE`; do grep "HTTP\/1.1 200" 
-#echo "The shop url is "http://${ROUTE}""
+#for i in `curl -kvv $ROUTE`; do grep "HTTP\/1.1 200" 
+echo "The shop url is "http://${ROUTE}""
 #
 # Apply a quota to the namespace
-oc apply -f ${PWD}boutique-quota.yaml
+oc apply -f ${PWD}/boutique-quota.yaml
 # 
 # Apply autoscaling for the frontend service
-oc apply -f frontend-hpa.yaml
+oc apply -f ${PWD}/frontend-hpa.yaml
+
+

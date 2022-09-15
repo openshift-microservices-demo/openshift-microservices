@@ -1,8 +1,8 @@
 kind: HorizontalPodAutoscaler
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 metadata:
-  name: example2
-  namespace: {{ $1 }}
+  name: frontend-autoscaler
+    #  namespace: {{ $NAMESPACE }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
