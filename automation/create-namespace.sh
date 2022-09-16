@@ -29,7 +29,7 @@ oc apply -f ${PWD}/all-in-one.yaml
 # **Need to create logic to monitor the website until the service is up and running**
 #
 # Expose the frontend service
-oc expose service frontend
+oc expose svc frontend --name=$1-route --hostname=$2.pebcac.org
 #
 # Get the url for the website
 ROUTE=`oc get route | cut -d" " -f4`
