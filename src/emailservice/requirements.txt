@@ -6,7 +6,7 @@
 #
 cachetools==4.2.4
     # via google-auth
-certifi==2022.6.15
+certifi==2022.12.7
     # via requests
 charset-normalizer==2.0.10
     # via requests
@@ -116,6 +116,3 @@ uritemplate==3.0.1
     # via google-api-python-client
 urllib3==1.26.10
     # via requests
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools
